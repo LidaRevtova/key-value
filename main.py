@@ -31,15 +31,22 @@ def main():
                 x = json.load(f)
                 if type(x[key]) is list:
                     x = [i for i in x[key]]
-                    print(', '.join(data))
+                    print(', '.join(x))
                 else:
                     print(x[key])
+        else:
+            with open('storage.data', 'w') as f:
+                json.dump(dict(), f)
 
+            with open('storage.data', 'r') as f:
+                x = json.load(f)
+                x = u_dict(x, key, value)
 
+            with open('storage.data', 'w') as f:
+                json.dump(x, f)
 
+            if value is None:
+                print(None)
 
+main()
 
-
-
-
-#parser.add_argument('--val', help='val', type=str, default=None)  # добавлена опция добавления значения
